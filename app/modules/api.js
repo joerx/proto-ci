@@ -22,5 +22,12 @@ module.exports = function(dockerAgent) {
     });
   });
 
+  v1.get('/containers/:containerId', (req, res, next) => {
+    dockerAgent.get(`/containers/${req.params.containerId}/json`, (err, response, body) => {
+      if (err) next(err);
+      else res.status(200).json(JSON.parse(body));
+    });
+  });
+
   return v1;
 }

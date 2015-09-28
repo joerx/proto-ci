@@ -1,0 +1,55 @@
+<div id="container-inspect">
+  <h2>Inspect Container</h2>
+
+  <div>
+    <h3>General</h3>
+    <dl>
+      <dt>Name</dt><dd>{{container.Name}}</dd>
+      <dt>ID</dt><dd>{{container.Id}}</dd>
+      <dt>Created</dt><dd>{{container.Created}}</dd>
+      <dt>Path</dt><dd>{{container.Path}}</dd>
+      <dt>Image</dt><dd>{{container.Image}}</dd>
+    </dl>
+
+    <h3>State</h3>
+    <dl>
+      <dt>PID</dt><dd>{{container.State.PID}}</dd>
+      <dt>Exit Code</dt><dd>{{container.State.ExitCode}}</dd>
+      <dt>Error</dt><dd>{{container.State.Error}}</dd>
+      <dt>Started At</dt><dd>{{container.State.StartedAt}}</dd>
+      <dt>Finished At</dt><dd>{{container.State.FinishedAt}}</dd>
+    </dl>
+
+    <table>
+      <tr><th>Running</th><td>{{container.State.Running | bool }}</td></tr>
+      <tr><th>Paused</th><td>{{container.State.Paused | bool }}</td></tr>
+      <tr><th>Restarting</th><td>{{container.State.Restarting | bool }}</td></tr>
+      <tr><th>OOMKilled</th><td>{{container.State.OOMKilled | bool }}</td></tr>
+      <tr><th>Dead</th><td>{{container.State.Dead | bool }}</td></tr>
+    </table>
+    
+    <h3>Network</h3>
+
+    <h3>Paths</h3>
+    <dl>
+      <dt>resolv.conf</dt><dd>{{container.ResolvConfPath}}</dd>
+      <dt>hostname</dt><dd>{{container.HostnamePath}}</dd>
+      <dt>hosts</dt><dd>{{container.HostsPath}}</dd>
+      <dt>logs</dt><dd>{{container.LogPath}}</dd>
+    </dl>
+
+    <h3>Misc Stuff</h3>
+    <dl>
+      <dt>Restart Count</dt><dd>{{container.RestartCount}}</dd>
+      <dt>Driver</dt><dd>{{container.Driver}}</dd>
+      <dt>Exec Driver</dt><dd>{{container.ExecDriver}}</dd>
+      <dt>Mount Label</dt><dd>{{container.MountLabel}}</dd>
+      <dt>Process Label</dt><dd>{{container.ProcessLabel}}</dd>
+      <dt>App Armor Profile</dt><dd>{{container.AppArmorProfile}}</dd>
+      <dt>Exec IDS</dt><dd>{{container.ExecIDS}}</dd>
+    </dl>
+
+
+  </div>
+
+</div>

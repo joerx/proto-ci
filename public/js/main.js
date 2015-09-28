@@ -1,20 +1,41 @@
 var ng = require('angular');
+var ngRoute = require('angular-route');
 var moment = require('moment');
 
-var app = ng.module('ProtoCiApp', []);
+var app = ng.module('ProtoCiApp', [ngRoute]);
 
-app.controller('ContainerList', ['$scope', '$http', function($scope, $http) {
+app.config(function($routeProvider) {
+  $routeProvider
+    .when('/containers', {
+      templateUrl: 'views/container/list.html',
+      controller: 'ContainerListCtrl'
+    })
+    .when('/containers/:containerId', {
+      templateUrl: 'views/container/inspect.html',
+      controller: 'ContainerInspectCtrl',
+    })
+    .otherwise({
+      redirectTo: '/containers'
+    });
+});
 
+app.controller('ContainerListCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.containers = []
-
   $http.get('/v1/containers')
     .then(function(response) {
-      console.log(response.data);
       $scope.containers = response.data;
     })
     .catch(console.error);
+}]);
 
-
+app.controller('ContainerInspectCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+  $scope.container = {};
+  $http.get('/v1/containers/' + $routeParams.containerId)
+    .then(function(response) {
+      // console.log(response);
+      $scope.container = response.data;
+    })
+    .catch(console.error);
 }]);
 
 app.directive('containerLink', function() {
@@ -23,7 +44,7 @@ app.directive('containerLink', function() {
     scope: {
       container: '=container'
     },
-    template: '<a href="#/container/{{container.Id}}" title="container.Id">{{container.Id | elips:10}}</a>'
+    template: '<a href="#/containers/{{container.Id}}" title="container.Id">{{container.Id | elips:15}}</a>'
   }
 });
 
@@ -42,8 +63,15 @@ app.directive('containerPorts', function() {
 
 app.filter('join', function() {
   return function(arr, length) {
+    if (!arr) return;
     if (!arr.join) return arr; // assume it's not an array, return it
     return arr.join(', ');
+  }
+});
+
+app.filter('bool', function() {
+  return function(val) {
+    return val ? 'yes' : 'no';
   }
 });
 

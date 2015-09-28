@@ -1,0 +1,25 @@
+<div id="container-list-controller">
+  <h2>All Containers</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Name(s)</th>
+        <th>Status</th>
+        <th>Ports</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="container in containers">
+        <td><container-link container="container"></td>
+        <td>{{container.Image | elips:33}}</td>
+        <td>{{container.Names | join | elips:33}}</td>
+        <td>{{container.Status}}</td>
+        <td><container-ports container="container"></td>
+        <td>{{container.Created | dockerDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

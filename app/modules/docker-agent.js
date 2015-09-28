@@ -8,7 +8,7 @@ let request = require('request');
 
 module.exports = function DockerAgent(config) {
 
-  console.warn('Notice: this is a synchronous call, use only during boostrapping!')
+  console.warn('Notice: this is a synchronous call, use only during boot!')
 
   assert(config.host, 'Docker host is missing');
   assert(config.certsPath, 'Client cert path is missing');

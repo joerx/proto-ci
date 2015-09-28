@@ -21,4 +21,4 @@ You shouldn't. This is just an exercise.
 ## Frontend
 
 - Build the app: `grunt browserify` (or use `grunt watch` to auto-build)
-- When server is running, it should be on [localhost:4000](http://localhost:4000)
+- When server is running, it should be on [localhost:3000](http://localhost:3000)

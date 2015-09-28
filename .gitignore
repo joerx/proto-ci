@@ -25,3 +25,13 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+
+# Public 
+public/js/bundle.js
+
+# This file can be used to connect via Curl 
+# See https://www.google.co.in/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=curl+docker+p12
+dm-client.p12
+
+# Internal stuff
+Notes.md

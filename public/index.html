@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Proto CI</title>
+  </head>
+  <body ng-app="ProtoCiApp">
+    <h1>Proto CI</h1>
+    
+    <div id="container-list-controller" ng-controller="ContainerList">
+      <h2>All Containers</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Name(s)</th>
+            <th>Status</th>
+            <th>Ports</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="container in containers">
+            <td><container-link container="container"></td>
+            <td>{{container.Image}}</td>
+            <td>{{container.Names | join | elips:100}}</td>
+            <td>{{container.Status}}</td>
+            <td><container-ports container="container"></td>
+            <td>{{container.Created | dockerDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script type="text/javascript" src="./js/bundle.js"></script>
+  </body>
+</html>

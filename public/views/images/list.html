@@ -1,0 +1,22 @@
+<div id="image-list-ctrl">
+<h1>Available Images</h1>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Tags</th>
+        <th>ID</th>
+        <th>Created</th>
+        <th>Virtual Size</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="image in images">
+      <td>{{image.RepoTags | join | elips:33}}</td>
+      <td>{{image.Id | elips:33}}</td>
+      <td>{{image.Created | dockerDate}}</td>
+      <td>{{image.VirtualSize | dockerBytes}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

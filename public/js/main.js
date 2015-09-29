@@ -14,6 +14,10 @@ app.config(function($routeProvider) {
       templateUrl: 'views/container/inspect.html',
       controller: 'ContainerInspectCtrl',
     })
+    .when('/images', {
+      templateUrl: 'views/images/list.html',
+      controller: 'ImageListCtrl'
+    })
     .otherwise({
       redirectTo: '/containers'
     });
@@ -34,6 +38,15 @@ app.controller('ContainerInspectCtrl', ['$scope', '$http', '$routeParams', funct
     .then(function(response) {
       // console.log(response);
       $scope.container = response.data;
+    })
+    .catch(console.error);
+}]);
+
+app.controller('ImageListCtrl', ['$scope', '$http', function($scope, $http) {
+  $scope.images = [];
+  $http.get('/v1/images/')
+    .then(function(response) {
+      $scope.images = response.data;
     })
     .catch(console.error);
 }]);
@@ -85,5 +98,21 @@ app.filter('elips', function() {
 app.filter('dockerDate', function() {
   return function(input) {
     return moment(parseInt(input) * 1000).format('dd, MMM Do YYYY; HH:MM:SS');
+  }
+});
+
+app.filter('dockerBytes', function() {
+  return function(input) {
+    return Math.ceil(parseInt(input) / 1024 / 1024) + ' MB';
+  }
+});
+
+app.filter('or', function() {
+  return function(arg, def) {
+    console.log(def);
+    if (arg === null) return def || 'null';
+    if (arg === undefined) return def || 'undefined';
+    if (arg === false) return def || 'false';
+    return arg;
   }
 });

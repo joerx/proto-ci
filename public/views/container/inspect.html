@@ -28,6 +28,56 @@
       <tr><th>Dead</th><td>{{container.State.Dead | bool }}</td></tr>
     </table>
     
+    <h3>Host Config</h3>
+    <dl>
+      <dt>Binds</dt><dd>{{container.HostConfig.Binds}}</dd>
+      <dt>ContainerIDFile</dt><dd>{{container.HostConfig.ContainerIDFile}}</dd>
+      <dt>Memory</dt><dd>{{container.HostConfig.Memory}}</dd>
+      <dt>MemorySwap</dt><dd>{{container.HostConfig.MemorySwap}}</dd>
+      <dt>CpuShares</dt><dd>{{container.HostConfig.CpuShares}}</dd>
+      <dt>CpuPeriod</dt><dd>{{container.HostConfig.CpuPeriod}}</dd>
+      <dt>CpusetCpus</dt><dd>{{container.HostConfig.CpusetCpus}}</dd>
+      <dt>CpusetMems</dt><dd>{{container.HostConfig.CpusetMems}}</dd>
+      <dt>CpuQuota</dt><dd>{{container.HostConfig.CpuQuota}}</dd>
+      <dt>BlkioWeight</dt><dd>{{container.HostConfig.BlkioWeight}}</dd>
+      <dt>OomKillDisable</dt><dd>{{container.HostConfig.OomKillDisable}}</dd>
+      <dt>MemorySwappiness</dt><dd>{{container.HostConfig.MemorySwappiness}}</dd>
+      <dt>Privileged</dt><dd>{{container.HostConfig.Privileged}}</dd>
+      <dt>PortBindings</dt><dd>{{container.HostConfig.PortBindings}}</dd>
+      <dt>Links</dt><dd>{{container.HostConfig.Links}}</dd>
+      <dt>PublishAllPorts</dt><dd>{{container.HostConfig.PublishAllPorts}}</dd>
+      <dt>Dns</dt><dd>{{container.HostConfig.Dns}}</dd>
+      <dt>PublishAllPorts</dt><dd>{{container.HostConfig.PublishAllPorts}}</dd>
+      <dt>ExtraHosts</dt><dd>{{container.HostConfig.ExtraHosts}}</dd>
+      <dt>VolumesFrom</dt><dd>{{container.HostConfig.VolumesFrom}}</dd>
+      <dt>Devices</dt><dd>{{container.HostConfig.Devices}}</dd>
+      <dt>NetworkMode</dt><dd>{{container.HostConfig.NetworkMode}}</dd>
+      <dt>IpcMode</dt><dd>{{container.HostConfig.IpcMode}}</dd>
+      <dt>PidMode</dt><dd>{{container.HostConfig.PidMode}}</dd>
+      <dt>UTSMode</dt><dd>{{container.HostConfig.UTSMode}}</dd>
+      <dt>CapAdd</dt><dd>{{container.HostConfig.CapAdd}}</dd>
+      <dt>CapDrop</dt><dd>{{container.HostConfig.CapDrop}}</dd>
+      <dt>GroupAdd</dt><dd>{{container.HostConfig.GroupAdd}}</dd>
+      <dt>RestartPolicy</dt>
+      <dd>
+        Name: "{{container.HostConfig.RestartPolicy.Name}}",
+        Restry: {{container.HostConfig.RestartPolicy.MaximumRetryCount}}
+      </dd>
+      <dt>SecurityOpt</dt><dd>{{container.HostConfig.SecurityOpt}}</dd>
+      <dt>ReadonlyRootfs</dt><dd>{{container.HostConfig.ReadonlyRootfs}}</dd>
+      <dt>Ulimits</dt><dd>{{container.HostConfig.Ulimits}}</dd>
+      <dt>LogConfig</dt>
+      <dd>
+        Type: {{container.HostConfig.LogConfig.Type}},
+        Conf: {{container.HostConfig.LogConfig.Config}}
+      </dd>
+      <dt>CgroupParent</dt><dd>{{container.HostConfig.CgroupParent}}</dd>
+      <dt>ConsoleSize</dt><dd>
+        {{container.HostConfig.ConsoleSize[0]}}x
+        {{container.HostConfig.ConsoleSize[1]}}
+      </dd>
+    </dl>
+    
     <h3>Network</h3>
 
     <h3>Paths</h3>

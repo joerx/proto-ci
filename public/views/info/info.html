@@ -1,0 +1,27 @@
+<div id="info-controller">
+  <h1>System Info</h1>
+
+  <h2>General</h2>
+  <dl>
+    <dt>Name</dt><dd>{{info.Name}}</dd>
+    <dt>OperatingSystem</dt><dd>{{info.OperatingSystem}}</dd>
+    <dt>SystemTime</dt><dd>{{info.SystemTime}}</dd>
+    <dt>Docker Root</dt><dd>{{info.DockerRootDir}}</dd>
+    <dt>Driver</dt><dd>{{info.Driver}}</dd>
+    <dt>ExecutionDriver</dt><dd>{{info.ExecutionDriver}}</dd>
+    <dt>ID</dt><dd>{{info.ID}}</dd>
+    <dt>IndexServerAddress</dt><dd>{{info.IndexServerAddress}}</dd>
+    <dt>InitPath</dt><dd>{{info.InitPath}}</dd>
+    <dt>LoggingDriver</dt><dd>{{info.LoggingDriver}}</dd>
+  </dl>
+
+  <h2>Version</h2>
+  <dl>
+    <dt>Docker</dt><dd>{{version.Version}}</dd>
+    <dt>Remote API</dt><dd>{{version.ApiVersion}}</dd>
+    <dt>Go Language</dt><dd>{{version.GoVersion}}</dd>
+    <dt>OS/Arch</dt><dd>{{version.Os}}/{{version.Arch}}</dd>
+    <dt>Kernel</dt><dd>{{version.KernelVersion}}</dd>
+  </dl>
+
+</div>

@@ -18,6 +18,10 @@ app.config(function($routeProvider) {
       templateUrl: 'views/images/list.html',
       controller: 'ImageListCtrl'
     })
+    .when('/info', {
+      templateUrl: '/views/info/info.html',
+      controller: 'InfoCtrl'
+    })
     .otherwise({
       redirectTo: '/containers'
     });
@@ -50,6 +54,24 @@ app.controller('ImageListCtrl', ['$scope', '$http', function($scope, $http) {
     })
     .catch(console.error);
 }]);
+
+app.controller('InfoCtrl', ['$scope', '$http', function($scope, $http) {
+  $scope.info = {};
+  $scope.version = {};
+  
+  $http.get('/v1/info')
+    .then(function(response) {
+      $scope.info = response.data;
+    })
+    .catch(console.error);
+
+  $http.get('/v1')
+    .then(function(response) {
+      $scope.version = response.data;
+    })
+    .catch(console.error);
+}]);
+
 
 app.directive('containerLink', function() {
   return {

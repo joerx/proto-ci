@@ -10,15 +10,7 @@ module.exports = function(dockerAgent) {
 
   let v1 = express.Router();
 
-  v1.get('/', (req, res, next) => res.status(200).json({version: 'v1'}));
-
-  /** docker host info */
-  v1.get('/info', (req, res, next) => {
-    dockerAgent.get('/info', (err, response, body) => {
-      if (err) next(err);
-      else res.status(200).json(JSON.parse(body));
-    });
-  });
+  // v1.get('/', (req, res, next) => res.status(200).json({version: 'v1'}));
 
   /** Get all containers */
   v1.get('/containers', (req, res, next) => {
@@ -60,6 +52,21 @@ module.exports = function(dockerAgent) {
     dockerAgent.get('/images/json?all=0', (err, response, body) => {
       if (err) next(err);
       else res.status(200).json(JSON.parse(body));
+    });
+  });
+
+  v1.get('/', (req, resp, next) => {
+    dockerAgent.get({url: '/version', json: true}, (err, res, body) => {
+      if (err) next(err);
+      else resp.status(200).json(body);
+    });
+  });
+
+  /** docker host info */
+  v1.get('/info', (req, res, next) => {
+    dockerAgent.get({url: '/info', json: true}, (err, response, body) => {
+      if (err) next(err);
+      else res.status(200).json(body);
     });
   });
 

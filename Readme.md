@@ -18,7 +18,20 @@ You shouldn't. This is just an exercise.
   docker-machine/boot2docker client certs are stored (usually `~/.docker/machine/certs`)
 - Start server with `npm start` (or `node app/server` if you must)
 
+## Docker
+
+- Build image 'protoci/workspace-base' from `Dockerfile` in `docker/workspace-base`
+
 ## Frontend
 
 - Build the app: `grunt browserify` (or use `grunt watch` to auto-build)
 - When server is running, it should be on [localhost:3000](http://localhost:3000)
+
+
+# Cleaning Up
+
+## Removing Containers Created by the Server
+
+```sh
+docker rm `docker ps -aq --filter='name=protoci_*'`
+```

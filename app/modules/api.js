@@ -16,7 +16,7 @@ module.exports = function(dockerAgent) {
   v1.get('/containers', (req, res, next) => {
     dockerAgent.get('/containers/json?all=true', (err, response, body) => {
       if (err) next(err);
-      else res.status(200).json(JSON.parse(body));
+      else res.status(200).json(body);
     });
   });
 
@@ -24,7 +24,7 @@ module.exports = function(dockerAgent) {
   v1.get('/containers/:containerId', (req, res, next) => {
     dockerAgent.get(`/containers/${req.params.containerId}/json`, (err, response, body) => {
       if (err) next(err);
-      else res.status(200).json(JSON.parse(body));
+      else res.status(200).json(body);
     });
   });
 
@@ -51,12 +51,12 @@ module.exports = function(dockerAgent) {
   v1.get('/images', (req, res, next) => {
     dockerAgent.get('/images/json?all=0', (err, response, body) => {
       if (err) next(err);
-      else res.status(200).json(JSON.parse(body));
+      else res.status(200).json(body);
     });
   });
 
   v1.get('/', (req, resp, next) => {
-    dockerAgent.get({url: '/version', json: true}, (err, res, body) => {
+    dockerAgent.get({url: '/version'}, (err, res, body) => {
       if (err) next(err);
       else resp.status(200).json(body);
     });
@@ -64,7 +64,7 @@ module.exports = function(dockerAgent) {
 
   /** docker host info */
   v1.get('/info', (req, res, next) => {
-    dockerAgent.get({url: '/info', json: true}, (err, response, body) => {
+    dockerAgent.get({url: '/info'}, (err, response, body) => {
       if (err) next(err);
       else res.status(200).json(body);
     });

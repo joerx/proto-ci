@@ -21,6 +21,7 @@ You shouldn't. This is just an exercise.
 ## Docker
 
 - Build image 'protoci/workspace-base' from `Dockerfile` in `docker/workspace-base`
+- Pull `node:4` image into your local docker
 
 ## Frontend
 

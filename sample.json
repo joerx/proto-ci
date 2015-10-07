@@ -1,0 +1,6 @@
+{
+  "gitUrl": "https://github.com/joerx/express-static.git",
+  "gitBranch": "master",
+  "testCmd": "ls -hal src/",
+  "image": "node:4"
+}

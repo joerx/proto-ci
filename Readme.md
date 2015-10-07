@@ -14,8 +14,8 @@ You shouldn't. This is just an exercise.
 
 ## Server
 
-- Make sure `DOCKER_HOST` and `DOCKER_CERTS_PATH` are set. The latter must point to where your 
-  docker-machine/boot2docker client certs are stored (usually `~/.docker/machine/certs`)
+- `DOCKER_HOST` and `DOCKER_CERT_PATH` are set. Running `env $(docker-machine env default)` will
+  usually setup the environment accordingly.
 - Start server with `npm start` (or `node app/server` if you must)
 
 ## Docker

@@ -14,15 +14,20 @@ module.exports = function(grunt) {
         }
       }
     },
+
     watch: {
       browserify: {
         files: ['public/js/**/*.js', '!public/js/bundle.js'],
         tasks: ['browserify']
       }
     }
+
   });
 
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('build', ['browserify']);
+  grunt.registerTask('default', ['build', 'watch']);
 
 };

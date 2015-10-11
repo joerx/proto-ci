@@ -1,0 +1,25 @@
+<div id="build-form-ctrl">
+  <h2>Edit Build</h2>
+
+  <form>
+    <div class="form-group">
+      <label for="build-git-url">Git Url</label><br />
+      <input type="text" ng-model="build.gitUrl" name="build-git-url" id="build-git-url"/>
+    </div>
+    <div class="form-group">
+      <label for="build-git-branch">Git Branch</label><br />
+      <input type="text" ng-model="build.gitBranch" name="build-git-branch" id="build-git-branch"/>
+    <div class="form-group">
+      <label for="build-test-cmd">Test Command</label><br />
+      <input type="text" ng-model="build.testCmd" name="build-test-cmd" id="build-test-cmd"/>
+    </div>
+    <div class="form-group">
+      <label for="build-image">Image</label><br />
+      <input type="text" ng-model="build.image" name="build-image" id="build-image"/>
+    </div>
+    <div class="form-submit">
+      <button type="submit" ng-click="submitForm()">Submit</button>
+    </div>
+  </form>
+
+</div>

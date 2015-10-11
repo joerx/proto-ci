@@ -22,6 +22,14 @@ app.config(function($routeProvider) {
       templateUrl: '/views/info/info.html',
       controller: 'InfoCtrl'
     })
+    .when('/builds', {
+      templateUrl: '/views/build/index.html',
+      controller: 'BuildIndexCtrl'
+    })
+    .when('/builds/new', {
+      templateUrl: '/views/build/form.html',
+      controller: 'BuildFormCtrl'
+    })
     .otherwise({
       redirectTo: '/containers'
     });
@@ -40,7 +48,6 @@ app.controller('ContainerInspectCtrl', ['$scope', '$http', '$routeParams', funct
   $scope.container = {};
   $http.get('/v1/containers/' + $routeParams.containerId)
     .then(function(response) {
-      // console.log(response);
       $scope.container = response.data;
     })
     .catch(console.error);
@@ -53,6 +60,30 @@ app.controller('ImageListCtrl', ['$scope', '$http', function($scope, $http) {
       $scope.images = response.data;
     })
     .catch(console.error);
+}]);
+
+app.controller('BuildIndexCtrl', ['$scope', function($scope) {
+  // todo: get list of recent builds
+}]);
+
+app.controller('BuildFormCtrl', ['$scope', '$http', function($scope, $http) {
+  
+  $scope.build = {
+    gitUrl: 'https://github.com/joerx/express-static.git',
+    gitBranch: 'master',
+    testCmd: 'ls -hal',
+    image: 'node:4'
+  }
+
+  $scope.submitForm = function(e) {
+    console.log('submit');
+    $http.post('/v1/builds', $scope.build)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(console.error);
+  }
+
 }]);
 
 app.controller('InfoCtrl', ['$scope', '$http', function($scope, $http) {

@@ -15,6 +15,10 @@ let docker = Docker(config.docker);
 let buildService = BuildService(docker);
 // let dockerAgent = docker.agent;
 
+'attach commit copy create destroy die exec_create exec_start export kill oom pause rename resize restart start stop top unpause'.split(' ').forEach(name => {
+  docker.on('container:' + name, e => console.log(name, e.id));
+});
+
 logger.level = config.logLevel;
 
 app.use(bodyParser.json());

@@ -30,7 +30,7 @@ node_modules
 public/js/bundle.js
 
 # This file can be used to connect via Curl 
-# See https://www.google.co.in/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=curl+docker+p12
+# See http://www.craigjellick.com/curl-docker-api-mac-boot2docker/
 dm-client.p12
 
 # Internal stuff

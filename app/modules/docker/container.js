@@ -18,7 +18,7 @@ module.exports = function Container(id, agent, options) {
   function waitContainer(fn) {
     agent.post(`/containers/${id}/wait`, (err, res, body) => {
       if (err) fn(err);
-      else if (res.statusCode !== 200) fn(Oops(res));
+      else if (res.statusCode !== 200) fn(AgentError(res));
       else fn(null, {exitCode: body.StatusCode});
     });
   }

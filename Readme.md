@@ -36,3 +36,13 @@ You shouldn't. This is just an exercise.
 ```sh
 docker rm `docker ps -aq --filter='name=protoci_*'`
 ```
+
+# Testing
+
+## Curl
+
+See http://www.craigjellick.com/curl-docker-api-mac-boot2docker/
+
+```
+curl -k --cert dm-client.p12:bla https://`docker-machine ip default`:2376/containers/json
+```

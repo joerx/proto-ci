@@ -1,16 +1,22 @@
 'use strict';
 
+let logger = require('winston');
+
+function now() {
+  return Math.floor(Date.now() / 1000);
+}
+
 module.exports = function monitor(agent, emitter) {
 
-  let ts = Math.floor(Date.now() / 1000);
+  let ts = now();
 
   function connect() {
 
     let req = agent.get({url: '/events?since=' + ts, json: false}, err => {
-      if(err) emitter.emit('error', err);
+      if (err) emitter.emit('error', err);
       else {
         connect();
-        ts = Math.floor(Date.now() / 1000);
+        ts = now();
       }
     });
 

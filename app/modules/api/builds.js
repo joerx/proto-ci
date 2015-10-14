@@ -23,10 +23,10 @@ module.exports = function(buildService) {
     build = buildService.createBuild(opts)
 
     build.on('start', build => res.status(201).json({
-        message: `Build ${build.id} started`, 
-        id: build.id,
-        options: opts
-      }))
+      message: `Build ${build.id} started`, 
+      options: opts,
+      id: build.id
+    }));
     
     build.start();
   });

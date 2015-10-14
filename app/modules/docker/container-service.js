@@ -1,7 +1,9 @@
 'use strict';
 
-let Container = require('./container');
+let Log = require('winston');
+let uniqid =  require('uniqid');
 let EventEmitter = require('events').EventEmitter;
+let Container = require('./container');
 let AgentError = require('./error').AgentError;
 
 /**
@@ -13,8 +15,10 @@ module.exports = function ContainerService(agent) {
 
   self.create = function(options, fn) {
 
-    let cId = options.pId || '1234'; // todo: generate uniqid
-    let cName = options.name || `docker=${cId}`;
+    let cId = options.pId || uniqid();
+    let cName = options.name || `protoci-${cId}`;
+
+    Log.debug('Container: create "%s"', cName);
 
     let hostConfig = {};
     if (options.volumesFrom) hostConfig.VolumesFrom = options.volumesFrom;

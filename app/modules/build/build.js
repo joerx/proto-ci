@@ -11,6 +11,11 @@ let logger = require('winston');
 //   testCmd: 'ls -hal src/',
 //   image: 'node:4'
 // }
+// lifecycle:
+//  - init  -> workspace was created, nothing happened yet
+//  - ready -> workspace for build is ready
+//  - start -> build was started
+//  - exit  -> build has exited
 module.exports = function Build(docker, options) {
 
   let id = uniqid();
@@ -42,12 +47,15 @@ module.exports = function Build(docker, options) {
       if (err) return done(err);
 
       container.on('error', done);
+      
       container.on('start', c => {
         logger.debug('Build %s: workspace created', build.id);
+        build.emit('init', build);
       });
 
       container.on('exit', c => {
         logger.debug('Build %s: workspace ready', build.id);
+        build.emit('ready', build);
         done();
       });
 
@@ -65,15 +73,17 @@ module.exports = function Build(docker, options) {
     let name        = `protoci_${options.projectId}_build`;
     let volumesFrom = [`protoci_${options.projectId}_workspace`];
     let workDir     = '/workspace';
-    let cOptions     = {cmd, image, workDir, volumesFrom, name};
+    let cOptions    = {cmd, image, workDir, volumesFrom, name};
 
     docker.container.create(cOptions, (err, container) => {
       if (err) return done(err);
 
       container.on('error', done);
+
       container.on('start', _ => {
-        build.emit('start', build);
         logger.debug('Build %s: start build', build.id);
+        build.containerId = container.id;
+        build.emit('start', build);
         done();
       });
 
